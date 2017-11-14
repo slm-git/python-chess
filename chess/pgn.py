@@ -708,12 +708,12 @@ class StringExporter(BaseVisitor):
         if self.variations or not self.variation_depth:
             # Write the move number.
             if board.turn == chess.WHITE:
-                self.write_token(str(board.fullmove_number) + ". ")
+                self.write_token(str(board.fullmove_number) + ". " + board.san(move) + " ")
             elif self.force_movenumber:
-                self.write_token(str(board.fullmove_number) + "... ")
-
-            # Write the SAN.
-            self.write_token(board.san(move) + " ")
+                self.write_token(str(board.fullmove_number) + "... " + board.san(move) + " ")
+            else:
+                # Write the SAN.
+                self.write_token(board.san(move) + " ")
 
             self.force_movenumber = False
 
